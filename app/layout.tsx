@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans } from "next/font/google";
+import { IBM_Plex_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-ibm-plex",
@@ -28,7 +30,7 @@ export default function RootLayout({
     }}>
 
       <html
-        lang="en"
+        lang="en" className={cn("font-sans", geist.variable)}
 
       >
         <body className={cn("font-IBMPlex antialiased", ibmPlexSans.variable)}>{children}</body>
