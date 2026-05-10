@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { SearchIcon } from "lucide-react";
 
 export const Search = () => {
   const router = useRouter();
@@ -54,10 +55,6 @@ export const Search = () => {
         placeholder="Search operations, assets, or prompt history..."
         onChange={(e) => setQuery(e.target.value)}
       />
-
-      <div className="flex items-center justify-center rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-medium text-white/40">
-        ⌘ K
-      </div>
     </div>
   );
 };
