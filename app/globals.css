@@ -391,7 +391,7 @@
 
   /* ===== NAVBAR COMPONENT */
   .header {
-    @apply flex justify-between items-center fixed h-16 w-full border-b-4 border-purple-100 bg-[#111319] p-5 lg:hidden;
+    @apply flex justify-between items-center fixed h-16 w-full border-b-1 border-purple-100/10 bg-[#111319] p-5 z-100 lg:hidden;
   }
 
   .header-nav_elements {
