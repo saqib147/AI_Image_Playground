@@ -149,6 +149,8 @@
 
   body {
     background-color: #111319;
+    background-image: radial-gradient(circle at top right, rgb(40, 42, 48), transparent 40%);
+    background-attachment: fixed;
     color: #ffffff;
     @apply bg-[#111319] text-white;
   }
@@ -166,7 +168,8 @@
   }
 
   .auth {
-    @apply flex justify-center items-center h-screen w-full bg-purple-100;
+    @apply flex justify-center items-center h-screen w-full bg-[#111319];
+    background-image: radial-gradient(circle at top right, rgba(120, 87, 255, 0.15), transparent 40%);
   }
 
   .flex-between {
@@ -224,11 +227,14 @@
 
   /* ===== LAYOUT */
   .auth {
-    @apply flex justify-center items-center min-h-screen w-full bg-purple-100;
+    @apply flex justify-center items-center min-h-screen w-full bg-[#111319];
+    background-image: radial-gradient(circle at top right, rgba(120, 87, 255, 0.15), transparent 40%);
   }
 
   .root {
     @apply flex min-h-screen w-full flex-col bg-[#111319] text-white lg:flex-row;
+    background-image: radial-gradient(circle at top right, rgb(40, 42, 48), transparent 40%);
+    background-attachment: fixed;
   }
 
   .root-container {
