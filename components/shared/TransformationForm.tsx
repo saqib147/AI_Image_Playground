@@ -242,7 +242,7 @@ const TransformationForm = ({
         {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
 
         {/* ── 3-column layout ───────────────────────────────────────────────── */}
-        <div className="flex flex-col lg:flex-row gap-5">
+        <div className="flex flex-col lg:flex-row items-start gap-5">
           {/* ═══════════════════════════════════════════════════
               LEFT — Configuration Panel
           ═══════════════════════════════════════════════════ */}
