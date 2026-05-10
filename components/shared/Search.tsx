@@ -40,19 +40,24 @@ export const Search = () => {
   }, [router, searchParams, query]);
 
   return (
-    <div className="search">
+    <div className="flex w-full items-center rounded-xl border border-white/10 bg-[#1A1A24] px-4 shadow-md transition-all focus-within:border-[#868CFF]/50 focus-within:ring-1 focus-within:ring-[#868CFF]/50">
       <Image
         src="/assets/icons/search.svg"
         alt="search"
-        width={24}
-        height={24}
+        width={20}
+        height={20}
+        className="opacity-50 invert"
       />
 
       <Input
-        className="search-field"
-        placeholder="Search"
+        className="border-0 bg-transparent text-white w-full placeholder:text-white/40 h-12 font-medium text-sm p-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+        placeholder="Search operations, assets, or prompt history..."
         onChange={(e) => setQuery(e.target.value)}
       />
+
+      <div className="flex items-center justify-center rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-medium text-white/40">
+        ⌘ K
+      </div>
     </div>
   );
 };

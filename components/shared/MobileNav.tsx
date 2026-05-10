@@ -1,12 +1,19 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 import { navLinks } from "@/constants";
 import { Show, UserButton } from "@clerk/nextjs";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
+// import { cn } from "@/lib/utils";
 
 const MobileNav = () => {
   const pathname = usePathname();
@@ -15,7 +22,7 @@ const MobileNav = () => {
     <header className="header">
       <Link href="/" className="flex items-center gap-2 md:py-2">
         <Image
-          src="/assets/images/logo-text.svg"
+          src="/assets/images/logo-text.png"
           alt="logo"
           width={180}
           height={28}
@@ -36,27 +43,32 @@ const MobileNav = () => {
                 className="cursor-pointer"
               />
             </SheetTrigger>
-            <SheetContent className="sheet-content sm:w-64">
+            <SheetContent className="sheet-content sm:w-64 bg-[#111319] border-l border-white/10 text-white">
               <>
                 <Image
-                  src="/assets/images/logo-text.svg"
+                  src="/assets/images/logo-text.png"
                   alt="logo"
                   width={152}
                   height={23}
                 />
 
                 <ul className="header-nav_elements">
-                  {navLinks.map((link) => {
+                  {navLinks.slice(0, 6).map((link) => {
                     const isActive = link.route === pathname;
 
                     return (
                       <li
-                        className={`${isActive && "gradient-text"}  flex whitespace-nowrap text-dark-700`}
                         key={link.route}
+                        className={cn(
+                          "flex w-full whitespace-nowrap rounded-xl transition-all duration-200 hover:bg-white/5",
+                          isActive
+                            ? "bg-[#868CFF] text-[#111319]"
+                            : "text-white/70",
+                        )}
                       >
                         <SheetClose asChild>
                           <Link
-                            className="sidebar-link cursor-pointer"
+                            className="sidebar-link cursor-pointer w-full"
                             href={link.route}
                           >
                             <Image
@@ -64,6 +76,44 @@ const MobileNav = () => {
                               alt="logo"
                               width={24}
                               height={24}
+                              className={cn(
+                                !isActive && "brightness-200 invert opacity-70",
+                              )}
+                            />
+                            {link.label}
+                          </Link>
+                        </SheetClose>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <ul className="header-nav_elements border-t border-white/10 pt-4 mt-4">
+                  {navLinks.slice(6).map((link) => {
+                    const isActive = link.route === pathname;
+
+                    return (
+                      <li
+                        key={link.route}
+                        className={cn(
+                          "flex w-full whitespace-nowrap rounded-xl transition-all duration-200 hover:bg-white/5",
+                          isActive
+                            ? "bg-[#868CFF] text-[#111319]"
+                            : "text-white/70",
+                        )}
+                      >
+                        <SheetClose asChild>
+                          <Link
+                            className="sidebar-link cursor-pointer w-full"
+                            href={link.route}
+                          >
+                            <Image
+                              src={link.icon}
+                              alt="logo"
+                              width={24}
+                              height={24}
+                              className={cn(
+                                !isActive && "brightness-200 invert opacity-70",
+                              )}
                             />
                             {link.label}
                           </Link>

@@ -15,9 +15,9 @@ const Sidebar = () => {
       <div className="flex size-full flex-col gap-4">
         <Link href="/" className="sidebar-logo">
           <Image
-            src="/assets/images/logo-text.svg"
-            width={182}
-            height={28}
+            src="/assets/images/logo-text.png"
+            width={250}
+            height={22}
             alt="logo"
           />
         </Link>
@@ -34,17 +34,19 @@ const Sidebar = () => {
                       "sidebar-nav_element group animate-slide-up",
                       `stagger-${index + 1}`,
                       isActive
-                        ? "bg-purple-gradient text-white shadow-md shadow-purple-400/30"
-                        : "text-gray-700",
+                        ? "bg-[#868CFF] text-[#111319]"
+                        : "text-white/70",
                     )}
                   >
                     <Link className="sidebar-link" href={link.route}>
                       <Image
                         src={link.icon}
                         alt={link.label}
-                        width={24}
-                        height={24}
-                        className={cn(isActive && "brightness-200 invert")}
+                        width={20}
+                        height={19}
+                        className={cn(
+                          !isActive && "brightness-200 invert opacity-70",
+                        )}
                       />
                       {link.label}
                     </Link>
@@ -52,7 +54,7 @@ const Sidebar = () => {
                 );
               })}
             </ul>
-            <ul className="sidebar-nav_elements">
+            <ul className="sidebar-nav_elements border-t border-white/10 pt-4 mt-4">
               {navLinks.slice(6).map((link, index) => {
                 const isActive = link.route === pathname;
                 return (
@@ -62,17 +64,19 @@ const Sidebar = () => {
                       "sidebar-nav_element group animate-slide-up",
                       `stagger-${index + 1}`,
                       isActive
-                        ? "bg-purple-gradient text-white shadow-md shadow-purple-400/30"
-                        : "text-gray-700",
+                        ? "bg-[#868CFF] text-[#111319]"
+                        : "text-white/70",
                     )}
                   >
                     <Link className="sidebar-link" href={link.route}>
                       <Image
                         src={link.icon}
                         alt={link.label}
-                        width={24}
-                        height={24}
-                        className={cn(isActive && "brightness-200 invert")}
+                        width={20}
+                        height={19}
+                        className={cn(
+                          !isActive && "brightness-200 invert opacity-70",
+                        )}
                       />
                       {link.label}
                     </Link>

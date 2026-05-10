@@ -11,7 +11,7 @@ const Loading = () => {
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={i}
-            className="flex flex-col gap-4 rounded-2xl border-2 border-purple-200/15 bg-white p-4 shadow-xl shadow-purple-200/10"
+            className="flex flex-col gap-4 rounded-2xl border-2 border-purple-200/15 bg-[#111319] p-4 shadow-xl shadow-purple-200/10"
           >
             <div className="h-52 w-full rounded-xl bg-purple-100" />
             <div className="flex items-center justify-between">

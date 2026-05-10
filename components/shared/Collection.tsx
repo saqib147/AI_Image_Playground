@@ -48,10 +48,7 @@ export const Collection = ({
 
   return (
     <>
-      <div className="collection-heading">
-        <h2 className="h2-bold text-dark-600">Recent Edits</h2>
-        {hasSearch && <Search />}
-      </div>
+      {/* Header handled by parent */}
 
       {images.length > 0 ? (
         <ul className="collection-list">
@@ -61,8 +58,8 @@ export const Collection = ({
         </ul>
       ) : (
         <div className="collection-empty">
-          <p className="p-20-semibold text-dark-400/60">No images yet</p>
-          <p className="p-14-medium text-dark-400/40 mt-1">Start transforming your first image!</p>
+          <p className="p-20-semibold text-white/60">No operations yet</p>
+          <p className="p-14-medium text-white/40 mt-1">Initialize a module to begin.</p>
         </div>
       )}
 
@@ -99,7 +96,14 @@ const Card = ({ image, index }: { image: IImage; index: number }) => {
   const stagger = `stagger-${(index % 6) + 1}`;
   return (
     <li className={`animate-slide-up ${stagger}`}>
-      <Link href={`/transformations/${image._id}`} className="collection-card">
+      <Link href={`/transformations/${image._id}`} className="relative block h-80 w-full overflow-hidden rounded-2xl border border-white/10 bg-[#1A1A24] transition-all hover:border-white/20 group">
+        
+        {index === 0 && (
+          <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded bg-black/60 px-2 py-1 text-[10px] font-bold tracking-wider text-white/80 backdrop-blur-md">
+            <span className="size-1.5 rounded-full bg-blue-400"></span> PROCESSED
+          </div>
+        )}
+
         <CldImage
           src={image.publicId}
           alt={image.title}
@@ -107,23 +111,27 @@ const Card = ({ image, index }: { image: IImage; index: number }) => {
           height={image.height}
           {...image.config}
           loading="lazy"
-          className="h-52 w-full rounded-[10px] object-cover"
-          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw"
         />
-        <div className="flex-between">
-          <p className="p-20-semibold mr-3 line-clamp-1 text-dark-600">
-            {image.title}
-          </p>
-          <Image
-            src={`/assets/icons/${
-              transformationTypes[
-                image.transformationType as TransformationTypeKey
-              ].icon
-            }`}
-            alt={image.title}
-            width={24}
-            height={24}
-          />
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111319] via-[#111319]/20 to-transparent opacity-90" />
+        
+        <div className="absolute bottom-0 left-0 w-full p-5 flex justify-between items-end">
+          <div className="flex flex-col gap-1">
+            <p className="text-sm font-semibold text-white">{image.title}</p>
+            <p className="font-mono text-[10px] text-white/50 uppercase tracking-wider">Output-092{String.fromCharCode(65 + (index % 26))}</p>
+          </div>
+          
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/10 transition-colors group-hover:bg-white/20">
+            <Image
+              src={`/assets/icons/${transformationTypes[image.transformationType as TransformationTypeKey]?.icon || 'image.png'}`}
+              alt={image.title}
+              width={14}
+              height={14}
+              className="invert opacity-80"
+            />
+          </div>
         </div>
       </Link>
     </li>
