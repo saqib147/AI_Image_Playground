@@ -1,7 +1,9 @@
 /* eslint-disable camelcase */
 import { createTransaction } from "@/lib/actions/transaction.actions";
 import { NextResponse } from "next/server";
-import stripe from "stripe";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -14,7 +16,7 @@ export async function POST(request: Request) {
   try {
     event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
   } catch (err) {
-    return NextResponse.json({ message: "Webhook error", error: err });
+    return NextResponse.json({ message: "Webhook error", error: err }, { status: 400 });
   }
 
   // Get the ID and type
