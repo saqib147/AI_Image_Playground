@@ -64,26 +64,68 @@ export const Collection = ({
       )}
 
       {totalPages > 1 && (
-        <Pagination className="mt-10">
-          <PaginationContent className="flex w-full">
+        <Pagination className="mt-12">
+          <PaginationContent className="flex items-center gap-3">
             <Button
               disabled={Number(page) <= 1}
-              className="collection-btn"
+              className="size-10 p-0 bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition-all rounded-xl disabled:opacity-30"
               onClick={() => onPageChange("prev")}
             >
-              <PaginationPrevious className="hover:bg-transparent hover:text-white" />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </Button>
 
-            <p className="flex-center p-16-medium w-fit flex-1">
-              {page} / {totalPages}
-            </p>
+            <div className="flex items-center gap-2">
+               {[...Array(Math.min(totalPages, 3))].map((_, i) => {
+                 const pageNum = i + 1;
+                 return (
+                   <Button
+                     key={pageNum}
+                     onClick={() => {
+                        const newUrl = formUrlQuery({
+                          searchParams: searchParams.toString(),
+                          key: "page",
+                          value: pageNum,
+                        });
+                        router.push(newUrl, { scroll: false });
+                     }}
+                     className={`size-10 p-0 rounded-xl font-bold transition-all ${
+                       Number(page) === pageNum 
+                       ? 'bg-purple-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]' 
+                       : 'bg-white/5 border border-white/10 text-white/50 hover:bg-white/10 hover:text-white'
+                     }`}
+                   >
+                     {pageNum}
+                   </Button>
+                 );
+               })}
+               {totalPages > 3 && <span className="text-white/20 px-1">...</span>}
+               {totalPages > 3 && (
+                 <Button
+                    onClick={() => {
+                      const newUrl = formUrlQuery({
+                        searchParams: searchParams.toString(),
+                        key: "page",
+                        value: totalPages,
+                      });
+                      router.push(newUrl, { scroll: false });
+                    }}
+                    className={`size-10 p-0 rounded-xl font-bold transition-all ${
+                      Number(page) === totalPages 
+                      ? 'bg-purple-500 text-white' 
+                      : 'bg-white/5 border border-white/10 text-white/50 hover:bg-white/10 hover:text-white'
+                    }`}
+                 >
+                   {totalPages}
+                 </Button>
+               )}
+            </div>
 
             <Button
-              className="button w-32 bg-purple-gradient bg-cover text-white"
+              className="size-10 p-0 bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition-all rounded-xl disabled:opacity-30"
               onClick={() => onPageChange("next")}
               disabled={Number(page) >= totalPages}
             >
-              <PaginationNext className="hover:bg-transparent hover:text-white" />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </Button>
           </PaginationContent>
         </Pagination>

@@ -2,6 +2,7 @@
 
 import { loadStripe } from "@stripe/stripe-js";
 import { useEffect } from "react";
+import { ShoppingCart } from "lucide-react";
 
 import { toast } from "sonner";
 import { checkoutCredits } from "@/lib/actions/transaction.actions";
@@ -61,9 +62,10 @@ const Checkout = ({
         <Button
           type="submit"
           role="link"
-          className="w-full rounded-full bg-purple-gradient bg-cover"
+          className="w-full py-6 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold transition-all shadow-lg shadow-purple-500/20 active:scale-[0.98] flex items-center justify-center gap-2"
         >
-          Buy Credit
+          <ShoppingCart className="w-5 h-5" />
+          Buy Credits
         </Button>
       </section>
     </form>
@@ -71,3 +73,4 @@ const Checkout = ({
 };
 
 export default Checkout;
+

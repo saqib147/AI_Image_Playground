@@ -326,7 +326,7 @@
   }
 
   .credits-item {
-    @apply w-full rounded-[16px] border-2 border-purple-200/20 bg-[#111319] p-8 shadow-xl shadow-purple-200/20 lg:max-w-none transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-200/30 hover:border-purple-300/40 animate-slide-up;
+    @apply w-full rounded-[16px] border-2 border-purple-200/20 bg-[#111319] p-8 shadow-xl  lg:max-w-none transition-all duration-300 hover:-translate-y-1 animate-slide-up;
   }
 
   .credits-btn {

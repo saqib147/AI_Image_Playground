@@ -167,26 +167,55 @@ export async function getUserImages({
   limit = 9,
   page = 1,
   userId,
+  type,
 }: {
   limit?: number;
   page: number;
   userId: string;
+  type?: string;
 }) {
   try {
     await connectToDatabase();
 
+    const query = type ? { author: userId, transformationType: type } : { author: userId };
+
     const skipAmount = (Number(page) - 1) * limit;
 
-    const images = await populateUser(Image.find({ author: userId }))
+    const images = await populateUser(Image.find(query))
       .sort({ updatedAt: -1 })
       .skip(skipAmount)
       .limit(limit);
 
-    const totalImages = await Image.find({ author: userId }).countDocuments();
+    const totalImages = await Image.find(query).countDocuments();
 
     return {
       data: JSON.parse(JSON.stringify(images)),
       totalPages: Math.ceil(totalImages / limit),
+    };
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+// GET USER IMAGE COUNTS
+export async function getUserImageCounts(userId: string) {
+  try {
+    await connectToDatabase();
+
+    const totalImages = await Image.countDocuments({ author: userId });
+    const restorations = await Image.countDocuments({
+      author: userId,
+      transformationType: "restore",
+    });
+    const bgRemovals = await Image.countDocuments({
+      author: userId,
+      transformationType: "removeBackground",
+    });
+
+    return {
+      totalImages,
+      restorations,
+      bgRemovals,
     };
   } catch (error) {
     handleError(error);
