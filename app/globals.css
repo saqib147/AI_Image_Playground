@@ -303,11 +303,11 @@
   }
 
   .home-icon-link {
-    @apply flex-center flex-col gap-2 transition-transform duration-200 hover:-translate-y-2 hover:scale-110;
+    @apply flex justify-center items-center flex-col gap-2 transition-transform duration-200 hover:-translate-y-2 hover:scale-110;
   }
 
   .home-icon-btn {
-    @apply flex-center w-fit rounded-full bg-white p-4 transition-shadow duration-200 hover:shadow-lg hover:shadow-purple-200/30;
+    @apply flex justify-center items-center w-fit rounded-full bg-white p-4 transition-shadow duration-200 hover:shadow-lg hover:shadow-purple-200/30;
   }
 
   .home-heading {
