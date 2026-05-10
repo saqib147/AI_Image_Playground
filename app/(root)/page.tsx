@@ -18,13 +18,13 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           Unleash Your Creative Vision with Imaginify
         </h1>
         <ul className="flex-center w-full gap-20">
-          {navLinks.slice(1, 5).map((link) => (
+          {navLinks.slice(1, 5).map((link, index) => (
             <Link
               key={link.route}
               href={link.route}
-              className="flex-center flex-col gap-2"
+              className={`home-icon-link animate-slide-up stagger-${index + 1}`}
             >
-              <li className="flex-center w-fit rounded-full bg-white p-4">
+              <li className="home-icon-btn">
                 <Image src={link.icon} alt="image" width={24} height={24} />
               </li>
               <p className="p-14-medium text-center text-white">{link.label}</p>

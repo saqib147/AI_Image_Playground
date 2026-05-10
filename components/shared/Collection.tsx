@@ -55,13 +55,14 @@ export const Collection = ({
 
       {images.length > 0 ? (
         <ul className="collection-list">
-          {images.map((image) => (
-            <Card image={image} key={`${image._id}`} />
+          {images.map((image, index) => (
+            <Card image={image} key={`${image._id}`} index={index} />
           ))}
         </ul>
       ) : (
         <div className="collection-empty">
-          <p className="p-20-semibold">Empty List</p>
+          <p className="p-20-semibold text-dark-400/60">No images yet</p>
+          <p className="p-14-medium text-dark-400/40 mt-1">Start transforming your first image!</p>
         </div>
       )}
 
@@ -94,9 +95,10 @@ export const Collection = ({
   );
 };
 
-const Card = ({ image }: { image: IImage }) => {
+const Card = ({ image, index }: { image: IImage; index: number }) => {
+  const stagger = `stagger-${(index % 6) + 1}`;
   return (
-    <li>
+    <li className={`animate-slide-up ${stagger}`}>
       <Link href={`/transformations/${image._id}`} className="collection-card">
         <CldImage
           src={image.publicId}

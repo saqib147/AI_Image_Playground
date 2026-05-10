@@ -25,15 +25,16 @@ const Sidebar = () => {
         <nav className="sidebar-nav">
           <Show when="signed-in">
             <ul className="sidebar-nav_elements">
-              {navLinks.slice(0, 6).map((link) => {
+              {navLinks.slice(0, 6).map((link, index) => {
                 const isActive = link.route === pathname;
                 return (
                   <li
                     key={link.route}
                     className={cn(
-                      "sidebar-nav_element group",
+                      "sidebar-nav_element group animate-slide-up",
+                      `stagger-${index + 1}`,
                       isActive
-                        ? "bg-purple-gradient text-white"
+                        ? "bg-purple-gradient text-white shadow-md shadow-purple-400/30"
                         : "text-gray-700",
                     )}
                   >
@@ -52,15 +53,16 @@ const Sidebar = () => {
               })}
             </ul>
             <ul className="sidebar-nav_elements">
-              {navLinks.slice(6).map((link) => {
+              {navLinks.slice(6).map((link, index) => {
                 const isActive = link.route === pathname;
                 return (
                   <li
                     key={link.route}
                     className={cn(
-                      "sidebar-nav_element group",
+                      "sidebar-nav_element group animate-slide-up",
+                      `stagger-${index + 1}`,
                       isActive
-                        ? "bg-purple-gradient text-white"
+                        ? "bg-purple-gradient text-white shadow-md shadow-purple-400/30"
                         : "text-gray-700",
                     )}
                   >

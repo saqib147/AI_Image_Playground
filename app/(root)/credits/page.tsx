@@ -25,8 +25,22 @@ const Credits = async () => {
 
       <section>
         <ul className="credits-list">
-          {plans.map((plan) => (
-            <li key={plan.name} className="credits-item">
+          {plans.map((plan, index) => (
+            <li
+              key={plan.name}
+              className={`credits-item relative stagger-${index + 1} ${
+                plan.name === "Pro Package"
+                  ? "border-purple-400/40 ring-2 ring-purple-400/20"
+                  : ""
+              }`}
+            >
+              {plan.name === "Pro Package" && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="bg-purple-gradient bg-cover px-4 py-1 rounded-full text-white text-xs font-semibold shadow-md shadow-purple-400/30">
+                    Most Popular
+                  </span>
+                </div>
+              )}
               <div className="flex-center flex-col gap-3">
                 <Image src={plan.icon} alt="check" width={50} height={50} />
                 <p className="p-20-semibold mt-2 text-purple-500">

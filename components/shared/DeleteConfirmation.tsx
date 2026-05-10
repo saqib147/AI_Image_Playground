@@ -45,14 +45,21 @@ export const DeleteConfirmation = ({ imageId }: { imageId: string }) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            className="border bg-red-500 text-white hover:bg-red-600"
+            className="border bg-red-500 text-white hover:bg-red-600 transition-all duration-200 active:scale-95"
             onClick={() =>
               startTransition(async () => {
                 await deleteImage(imageId);
               })
             }
           >
-            {isPending ? "Deleting..." : "Delete"}
+            {isPending ? (
+              <>
+                <span className="btn-spinner border-red-200/30 border-t-white" />
+                Deleting...
+              </>
+            ) : (
+              "Delete"
+            )}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

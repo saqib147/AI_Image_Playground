@@ -1,6 +1,6 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { navLinks } from "@/constants";
 import { Show, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
@@ -54,18 +54,20 @@ const MobileNav = () => {
                         className={`${isActive && "gradient-text"}  flex whitespace-nowrap text-dark-700`}
                         key={link.route}
                       >
-                        <Link
-                          className="sidebar-link cursor-pointer"
-                          href={link.route}
-                        >
-                          <Image
-                            src={link.icon}
-                            alt="logo"
-                            width={24}
-                            height={24}
-                          />
-                          {link.label}
-                        </Link>
+                        <SheetClose asChild>
+                          <Link
+                            className="sidebar-link cursor-pointer"
+                            href={link.route}
+                          >
+                            <Image
+                              src={link.icon}
+                              alt="logo"
+                              width={24}
+                              height={24}
+                            />
+                            {link.label}
+                          </Link>
+                        </SheetClose>
                       </li>
                     );
                   })}

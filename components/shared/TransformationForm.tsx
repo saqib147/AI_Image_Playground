@@ -328,7 +328,14 @@ const TransformationForm = ({
             disabled={isTransforming || newTransformation === null}
             onClick={onTransformHandler}
           >
-            {isTransforming ? "Transforming..." : "Apply Changes"}
+            {isTransforming ? (
+              <>
+                <span className="btn-spinner" />
+                Transforming...
+              </>
+            ) : (
+              "Apply Changes"
+            )}
           </Button>
 
           <Button
@@ -336,7 +343,14 @@ const TransformationForm = ({
             className="submit-button capitalize cursor-pointer"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Submitting..." : "Save Image"}
+            {isSubmitting ? (
+              <>
+                <span className="btn-spinner" />
+                Saving...
+              </>
+            ) : (
+              "Save Image"
+            )}
           </Button>
         </div>
       </form>
