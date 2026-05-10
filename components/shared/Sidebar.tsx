@@ -43,7 +43,7 @@ const Sidebar = () => {
                         src={link.icon}
                         alt={link.label}
                         width={20}
-                        height={19}
+                        height={20}
                         className={cn(
                           !isActive && "brightness-200 invert opacity-70",
                         )}
@@ -73,7 +73,7 @@ const Sidebar = () => {
                         src={link.icon}
                         alt={link.label}
                         width={20}
-                        height={19}
+                        height={20}
                         className={cn(
                           !isActive && "brightness-200 invert opacity-70",
                         )}
